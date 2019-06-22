@@ -26,49 +26,49 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       dataList: {
-        psssword: "",
-        username: ""
+        psssword: '',
+        username: ''
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
-    };
+    }
   },
   methods: {
-    add() {
+    add () {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           this.$http({
-            url: "http://localhost:8888/api/private/v1/login",
-            method: "post",
+            url: 'http://localhost:8888/api/private/v1/login',
+            method: 'post',
             data: this.dataList
           }).then(res => {
-            console.log(res);
+            console.log(res)
             if (res.data.meta.status === 200) {
-              this.$router.push("./home");
+              this.$router.push('./home')
               this.$message({
-                message: "登录成功",
-                type: "success"
-              });
-              window.localStorage.setItem("token", res.data.data.token);
+                message: '登录成功',
+                type: 'success'
+              })
+              window.localStorage.setItem('token', res.data.data.token)
             } else {
-              this.$message.error("登陆失败");
+              this.$message.error('登陆失败')
             }
-          });
+          })
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>

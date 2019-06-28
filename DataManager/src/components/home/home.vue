@@ -25,6 +25,9 @@ export default {
   mounted () {
     let token = window.localStorage.getItem('token')
     if (!token) {
+      this.$message({
+        message:'请登录'
+      })
       this.$router.push('/login')
     }
   }

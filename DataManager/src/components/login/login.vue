@@ -51,19 +51,17 @@ export default {
           }).then(res => {
             console.log(res)
             if (res.data.meta.status === 200) {
+              window.localStorage.setItem('token', res.data.data.token)
               this.$router.push('./home')
               this.$message({
                 message: '登录成功',
                 type: 'success'
               })
-              window.localStorage.setItem('token', res.data.data.token)
+            
             } else {
               this.$message.error('登陆失败')
             }
           })
-        } else {
-          console.log('error submit!!')
-          return false
         }
       })
     }
